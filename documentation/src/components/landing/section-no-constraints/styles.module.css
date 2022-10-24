@@ -1,0 +1,45 @@
+.tabContainer {
+    @apply relative flex justify-center w-full max-w-5xl gap-4 mx-auto;
+}
+
+.tab {
+    @apply text-base font-medium text-center uppercase transition-colors duration-200 ease-in-out font-montserrat;
+}
+
+.text {
+    @apply font-montserrat font-medium text-base tracking-tight leading-[20px] max-w-[280px] mb-0 text-[#2A2A42];
+}
+
+.openSourceCard {
+    box-shadow: 4px 8px 16px rgba(42, 42, 66, 0.16);
+    @apply border border-solid border-[#ededef] rounded-[10px] bg-[#ffffffb3] p-2.5 lg:p-0  min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative select-none;
+}
+
+.openSourceCardValue {
+    @apply text-4xl font-black text-center font-montserrat group-hover:text-[#1890FF] text-[#6B6B7C];
+}
+
+.openSourceCardLabel {
+    @apply mt-2 text-xs font-medium text-center font-montserrat group-hover:text-[#1890FF] text-[#6B6B7C];
+}
+
+.openSourceCardBadge {
+    box-shadow: 3.5px 7px 14px rgba(42, 42, 66, 0.16);
+    @apply bg-[#ededef] w-[42px] h-[28px] absolute right-2.5 top-0 flex items-center justify-center rounded-b group-hover:text-[#1890FF] text-[#6B6B7C];
+}
+
+.openSourceCardBadge__discord {
+    @apply text-[#acacb6];
+}
+
+.openSourceCard:hover .openSourceCardBadge__discord {
+    @apply text-[#5865F2];
+}
+
+.openSourceCard:hover .openSourceCardBadge__github {
+    @apply text-[#00AAEC];
+}
+
+.openSourceCard:hover .openSourceCardBadge__twitter {
+    @apply text-[#00AAEC];
+}

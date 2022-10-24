@@ -11,6 +11,7 @@ import React from "react";
 /**
  * check tailwindcss breakpoints with matchMedia and addEventListener
  */
+
 export const useTWBreakpoints = (): Record<
     "sm" | "md" | "lg" | "xl" | "xxl",
     boolean

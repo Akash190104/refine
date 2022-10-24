@@ -2,11 +2,6 @@ import React from "react";
 import Link from "@docusaurus/Link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
-    ChevronDown,
-    BusinessLogic01,
-    BusinessLogic02,
-    BusinessLogic04,
-    BusinessLogic03,
     BackendIcons,
     RefineAnimatedBgIcon,
     GraySocialIcons,
@@ -17,6 +12,8 @@ import { CountingNumber } from "../counting-number";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 import { ExternalLinkIcon } from "../icons/external-link-icon";
 import { useGithubContext } from "../../../context/GithubContext";
+import styles from "./styles.module.css";
+import BusinessLogicCards from "./BusinessLogicCards";
 
 export const SectionNoConstraints: React.FC = () => {
     const { starCount } = useGithubContext();
@@ -284,28 +281,64 @@ export const SectionNoConstraints: React.FC = () => {
                         <RefineAnimatedBgIcon dotY={slideRightBgDotY} />
                     </motion.div>
                     <div className="flex-shrink-0 w-full">
-                        <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
+                        <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[64px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
                             no constraints
                         </div>
-                        <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
-                            <motion.div
-                                className="absolute top-0 left-0 w-full"
-                                style={{ translateY: slideSubtitleY }}
-                            >
-                                <div className="w-full text-center h-9 short:h-6">
+                        <motion.div
+                            style={lg ? { opacity: slideOpacity } : {}}
+                            className="flex-shrink-0 hidden lg:block"
+                        >
+                            <div className={styles.tabContainer}>
+                                <motion.div
+                                    style={{
+                                        zIndex: currentSlide === 1 ? 2 : 0,
+                                        color:
+                                            currentSlide === 1
+                                                ? "#1890FF"
+                                                : "#D8D8DC",
+                                    }}
+                                    className={styles.tab}
+                                >
                                     on styling
-                                </div>
-                                <div className="w-full text-center h-9 short:h-6">
+                                </motion.div>
+                                <motion.div
+                                    style={{
+                                        zIndex: currentSlide === 2 ? 2 : 0,
+                                        color:
+                                            currentSlide === 2
+                                                ? "#1890FF"
+                                                : "#D8D8DC",
+                                    }}
+                                    className={styles.tab}
+                                >
                                     on backend
-                                </div>
-                                <div className="w-full text-center h-9 short:h-6">
-                                    on your workflow
-                                </div>
-                                <div className="w-full text-center h-9 short:h-6">
-                                    with open software
-                                </div>
-                            </motion.div>
-                        </div>
+                                </motion.div>
+                                <motion.div
+                                    style={{
+                                        zIndex: currentSlide === 3 ? 2 : 0,
+                                        color:
+                                            currentSlide === 3
+                                                ? "#1890FF"
+                                                : "#D8D8DC",
+                                    }}
+                                    className={styles.tab}
+                                >
+                                    on workflow
+                                </motion.div>
+                                <motion.div
+                                    style={{
+                                        zIndex: currentSlide === 4 ? 2 : 0,
+                                        color:
+                                            currentSlide === 4
+                                                ? "#1890FF"
+                                                : "#D8D8DC",
+                                    }}
+                                    className={styles.tab}
+                                >
+                                    with opensource
+                                </motion.div>
+                            </div>
+                        </motion.div>
                     </div>
                     <motion.div
                         className="overflow-x-visible lg:overflow-x-hidden lg:overflow-y-hidden lg:snap-x lg:snap-mandatory relative flex-1 lg:max-h-[600px]"
@@ -339,15 +372,6 @@ export const SectionNoConstraints: React.FC = () => {
                                                 style={{
                                                     width: "100%",
                                                     maxHeight: "280px",
-                                                    boxShadow:
-                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
-                                                    ...(lg
-                                                        ? {
-                                                              scale: slideScreen01Y,
-                                                              opacity:
-                                                                  slideScreen01Y,
-                                                          }
-                                                        : {}),
                                                 }}
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
@@ -553,20 +577,37 @@ export const SectionNoConstraints: React.FC = () => {
                                                         slideScreenText12Progress,
                                                 }}
                                             >
-                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] mb-0 text-[#2A2A42]">
+                                                <p className={styles.text}>
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
-                                                    is{" "}
+                                                    is is{" "}
                                                     <strong className="font-bold">
                                                         headless by design.
                                                     </strong>{" "}
+                                                    <div>
+                                                        It doesn’t ship with any
+                                                        pre-styled components or
+                                                        UI by default.
+                                                    </div>
+                                                    <br />
+                                                    <div>
+                                                        Instead, you can use any{" "}
+                                                        <strong className="font-bold">
+                                                            custom design
+                                                        </strong>{" "}
+                                                        or{" "}
+                                                        <strong className="font-bold">
+                                                            UI framework
+                                                        </strong>{" "}
+                                                        for{" "}
+                                                        <strong className="font-bold">
+                                                            100% control over
+                                                            styling.
+                                                        </strong>
+                                                    </div>
                                                 </p>
-                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] text-[#2A2A42]">
-                                                    It doesn’t ship with any
-                                                    pre-styled components or UI
-                                                    by default.
-                                                </p>
+
                                                 <motion.p
                                                     className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] text-[#2A2A42] z-[-1]"
                                                     style={{
@@ -997,9 +1038,42 @@ export const SectionNoConstraints: React.FC = () => {
                                     </motion.div>
                                 </div>
                             </div>
-                            <div className="flex items-center justify-center flex-shrink-0 w-full mb-24 lg:mb-0 lg:h-full">
+                            <div className="relative flex items-center justify-center flex-shrink-0 w-full mb-24 lg:mb-0 lg:h-full">
                                 <div className="flex flex-col w-full h-auto max-w-screen-xl gap-20 lg:flex-row md:gap-32 lg:gap-0">
                                     <div className="flex-1 flex relative -mx-6 lg:mx-0 px-[55px] pt-0 pb-4 lg:px-12 lg:pb-12 lg:pt-0 justify-center items-center">
+                                        <div
+                                            style={{
+                                                top: "-130px",
+                                                left: "150px",
+                                                width: "524px",
+                                                height: "524px",
+                                                position: "absolute",
+                                                background:
+                                                    "radial-gradient(circle, rgba(128,232,250,1) 0%, rgba(255,255,255,0) 50%)",
+                                            }}
+                                        />
+                                        <div
+                                            style={{
+                                                top: "-130px",
+                                                left: "-55px",
+                                                width: "524px",
+                                                height: "524px",
+                                                position: "absolute",
+                                                background:
+                                                    "radial-gradient(circle, rgba(24, 144, 255, 0.5) 0%, rgba(255,255,255,0) 50%)",
+                                            }}
+                                        />
+                                        <div
+                                            style={{
+                                                top: "-55px",
+                                                left: "130px",
+                                                width: "390px",
+                                                height: "590px",
+                                                position: "absolute",
+                                                background:
+                                                    "radial-gradient(circle, rgba(206, 178, 238,1) 0%, rgba(255, 255, 255, 0) 50%)",
+                                            }}
+                                        />
                                         <motion.div
                                             style={{
                                                 perspective: "1000px",
@@ -1030,118 +1104,19 @@ export const SectionNoConstraints: React.FC = () => {
                                             }}
                                             className="flex relative w-full max-w-[350px] h-full"
                                         >
-                                            <motion.div
-                                                className="bg-white h-min rounded-[20px]"
-                                                animate={{
-                                                    rotateY: ["10deg", "20deg"],
-                                                    rotateX: ["5deg", "-5deg"],
-                                                }}
-                                                transition={{
-                                                    yoyo: Infinity,
-                                                    ease: "easeInOut",
-                                                    duration: 3,
-                                                    delay: 0,
-                                                }}
-                                                style={{
-                                                    width: "45%",
-                                                    boxShadow:
-                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
-                                                }}
-                                            >
-                                                <BusinessLogic02
-                                                    style={{
-                                                        width: "100%",
-                                                        height: "auto",
-                                                    }}
-                                                />
-                                            </motion.div>
-                                            <motion.div
-                                                className="bg-white absolute top-[10%] left-[19%] h-min rounded-[20px]"
-                                                animate={{
-                                                    rotateY: ["10deg", "20deg"],
-                                                    rotateX: ["5deg", "-5deg"],
-                                                }}
-                                                transition={{
-                                                    yoyo: Infinity,
-                                                    ease: "easeInOut",
-                                                    duration: 3,
-                                                    delay: 0,
-                                                }}
-                                                style={{
-                                                    width: "45%",
-                                                    boxShadow:
-                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
-                                                }}
-                                            >
-                                                <BusinessLogic03
-                                                    style={{
-                                                        width: "100%",
-                                                        height: "auto",
-                                                    }}
-                                                />
-                                            </motion.div>
-                                            <motion.div
-                                                className="bg-white absolute top-[20%] left-[38%] h-min rounded-[20px]"
-                                                animate={{
-                                                    rotateY: ["10deg", "20deg"],
-                                                    rotateX: ["5deg", "-5deg"],
-                                                }}
-                                                transition={{
-                                                    yoyo: Infinity,
-                                                    ease: "easeInOut",
-                                                    duration: 3,
-                                                    delay: 0,
-                                                }}
-                                                style={{
-                                                    width: "45%",
-                                                    boxShadow:
-                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
-                                                }}
-                                            >
-                                                <BusinessLogic04
-                                                    style={{
-                                                        width: "100%",
-                                                        height: "auto",
-                                                    }}
-                                                />
-                                            </motion.div>
-                                            <motion.div
-                                                className="bg-white absolute top-[30%] left-[55%] h-min rounded-[20px]"
-                                                animate={{
-                                                    rotateY: ["10deg", "20deg"],
-                                                    rotateX: ["5deg", "-5deg"],
-                                                }}
-                                                transition={{
-                                                    yoyo: Infinity,
-                                                    ease: "easeInOut",
-                                                    duration: 3,
-                                                    delay: 0,
-                                                }}
-                                                style={{
-                                                    width: "45%",
-                                                    boxShadow:
-                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
-                                                }}
-                                            >
-                                                <BusinessLogic01
-                                                    style={{
-                                                        width: "100%",
-                                                        height: "auto",
-                                                    }}
-                                                />
-                                            </motion.div>
+                                            <BusinessLogicCards />
                                         </motion.div>
                                     </div>
-                                    <div className="flex-1 place-self-center ">
+                                    <div className="flex-1 place-self-center">
                                         <div className="max-w-[390px] font-montserrat ml-auto mr-auto lg:mr-0 lg:-ml-5 text-[#2A2A42]">
-                                            <p className="text-xl max-w-[360px]">
+                                            <p className="text-base max-w-[360px]">
                                                 <strong>refine</strong> gives
                                                 you and your team{" "}
                                                 <strong>100% control</strong>{" "}
                                                 over your project and totally
                                                 prevents vendor lock-in:
                                             </p>
-                                            <p className="text-base">
+                                            <p className="text-xs">
                                                 <ul>
                                                     <li>
                                                         Write your code as you
@@ -1169,38 +1144,10 @@ export const SectionNoConstraints: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex-shrink-0 block w-full mb-8 lg:hidden">
-                                <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
-                                    no constraints
-                                </div>
-                                <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
-                                    <motion.div className="absolute top-0 left-0 w-full">
-                                        <div className="w-full text-center h-9 short:h-6">
-                                            with open software
-                                        </div>
-                                    </motion.div>
-                                </div>
-                            </div>
                             <div className="flex items-center justify-center flex-shrink-0 w-full lg:h-full">
                                 <div className="flex w-full h-auto max-w-screen-xl">
-                                    <div className="flex-1 flex flex-col justif text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4 lg:gap-2">
-                                        <div className="font-montserrat text-xl pt-[14px] max-w-screen-lg">
-                                            <p className="lg:mb-2">
-                                                <strong>refine</strong> core is
-                                                an open source framework and it
-                                                will always{" "}
-                                                <strong>stay free</strong>.
-                                            </p>
-                                            <p className="lg:mb-0">
-                                                It has a very strong community
-                                                of maintainers, contributers and
-                                                and users providing{" "}
-                                                <strong>24/7</strong> support on
-                                                our GitHub, Twitter and Discord
-                                                channels.
-                                            </p>
-                                        </div>
-                                        <div className="overflow-x-hidden overflow-y-hidden pt-5 lg:pt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2.5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
+                                    <div className="flex-1 flex flex-col  text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4 lg:gap-2">
+                                        <div className="overflow-x-hidden overflow-y-hidden pt-5 lg:pt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full px-5 pb-5 max-w-[1000px]">
                                             <motion.div
                                                 style={
                                                     lg
@@ -1235,21 +1182,25 @@ export const SectionNoConstraints: React.FC = () => {
                                                     once: true,
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative group hover:text-[#1890FF] text-[#2A2A42] select-none"
+                                                className={`${styles.openSourceCard} group`}
                                             >
                                                 <div
-                                                    style={{
-                                                        boxShadow:
-                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
-                                                    }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none flex justify-center items-center pl-px pt-1"
+                                                    className={`${styles.openSourceCardBadge} ${styles.openSourceCardBadge}__github`}
                                                 >
-                                                    <SmallSocialIcons.GithubIcon className="group-hover:text-white text-[#2A2A42]" />
+                                                    <SmallSocialIcons.GithubIcon />
                                                 </div>
-                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center select-none">
-                                                    <CountingNumber to={66} />
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardValue
+                                                    }
+                                                >
+                                                    <CountingNumber to={89} />
                                                 </div>
-                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center select-none">
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardLabel
+                                                    }
+                                                >
                                                     Contributors
                                                 </div>
                                             </motion.div>
@@ -1287,22 +1238,26 @@ export const SectionNoConstraints: React.FC = () => {
                                                     once: true,
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group hover:text-[#1890FF] text-[#2A2A42] select-none"
+                                                className={`${styles.openSourceCard} group`}
                                             >
                                                 <div
-                                                    style={{
-                                                        boxShadow:
-                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
-                                                    }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none flex justify-center items-center pl-px pt-1"
+                                                    className={`${styles.openSourceCardBadge} ${styles.openSourceCardBadge}__github`}
                                                 >
-                                                    <SmallSocialIcons.GithubIcon className="group-hover:text-white text-[#2A2A42]" />
+                                                    <SmallSocialIcons.GithubIcon />
                                                 </div>
-                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardValue
+                                                    }
+                                                >
                                                     <CountingNumber to={2800} />
                                                     +
                                                 </div>
-                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardLabel
+                                                    }
+                                                >
                                                     Commits
                                                 </div>
                                             </motion.div>
@@ -1340,18 +1295,18 @@ export const SectionNoConstraints: React.FC = () => {
                                                     once: true,
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group group-hover:text-[#1890FF] text-[#2A2A42] select-none"
+                                                className={`${styles.openSourceCard} group`}
                                             >
                                                 <div
-                                                    style={{
-                                                        boxShadow:
-                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
-                                                    }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none flex justify-center items-center pl-px pt-1"
+                                                    className={`${styles.openSourceCardBadge} ${styles.openSourceCardBadge}__github`}
                                                 >
-                                                    <SmallSocialIcons.GithubIcon className="group-hover:text-white text-[#2A2A42]" />
+                                                    <SmallSocialIcons.GithubIcon />
                                                 </div>
-                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center group-hover:text-[#1890FF] text-[#2A2A42]">
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardValue
+                                                    }
+                                                >
                                                     <CountingNumber
                                                         to={
                                                             Math.floor(
@@ -1364,7 +1319,11 @@ export const SectionNoConstraints: React.FC = () => {
                                                     />
                                                     +
                                                 </div>
-                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center group-hover:text-[#1890FF] text-[#2A2A42]">
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardLabel
+                                                    }
+                                                >
                                                     GitHub Stars
                                                 </div>
                                             </motion.div>
@@ -1402,21 +1361,25 @@ export const SectionNoConstraints: React.FC = () => {
                                                     once: true,
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group"
+                                                className={`${styles.openSourceCard} group`}
                                             >
                                                 <div
-                                                    style={{
-                                                        boxShadow:
-                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
-                                                    }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#5865F2] group-hover:!shadow-none flex justify-center items-center pl-px pt-1"
+                                                    className={`${styles.openSourceCardBadge} ${styles.openSourceCardBadge}__discord`}
                                                 >
-                                                    <SmallSocialIcons.DiscordIcon className="group-hover:text-white text-[#5865F2]" />
+                                                    <SmallSocialIcons.DiscordIcon />
                                                 </div>
-                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardValue
+                                                    }
+                                                >
                                                     <CountingNumber to={500} />+
                                                 </div>
-                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardLabel
+                                                    }
+                                                >
                                                     Discord Members
                                                 </div>
                                             </motion.div>
@@ -1454,35 +1417,42 @@ export const SectionNoConstraints: React.FC = () => {
                                                     once: true,
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group"
+                                                className={`${styles.openSourceCard} group`}
                                             >
                                                 <div
-                                                    style={{
-                                                        boxShadow:
-                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
-                                                    }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#00AAEC] group-hover:!shadow-none group flex justify-center items-center pl-px pt-1"
+                                                    className={`${styles.openSourceCardBadge} ${styles.openSourceCardBadge}__twitter`}
                                                 >
-                                                    <SmallSocialIcons.TwitterIcon className="text-[#00AAEC] group-hover:text-white" />
+                                                    <SmallSocialIcons.TwitterIcon />
                                                 </div>
-                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardValue
+                                                    }
+                                                >
                                                     <CountingNumber to={850} />+
                                                 </div>
-                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
+                                                <div
+                                                    className={
+                                                        styles.openSourceCardLabel
+                                                    }
+                                                >
                                                     Twitter Followers
                                                 </div>
                                             </motion.div>
                                             <motion.div
-                                                style={
-                                                    lg
-                                                        ? {
-                                                              rotateX:
-                                                                  slideCounterCardsRotateX,
-                                                              opacity:
-                                                                  slideCounterCardsOpacity,
-                                                          }
-                                                        : {}
-                                                }
+                                                style={{
+                                                    rotateX: lg
+                                                        ? slideCounterCardsRotateX
+                                                        : "unset",
+                                                    opacity: lg
+                                                        ? slideCounterCardsOpacity
+                                                        : "unset",
+                                                    background:
+                                                        "rgba(255, 255, 255, 0.7)",
+                                                    border: "1px solid #ededef",
+                                                    boxShadow:
+                                                        "4px 8px 16px rgba(42, 42, 66, 0.16)",
+                                                }}
                                                 transition={
                                                     !lg
                                                         ? {
@@ -1506,35 +1476,23 @@ export const SectionNoConstraints: React.FC = () => {
                                                     once: true,
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group group-hover:text-[#1890FF] text-[#2A2A42]"
+                                                className="rounded-[10px] p-2.5 lg:p-0 shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative group group-hover:text-[#1890FF] text-[#2A2A42]"
                                             >
-                                                <div
-                                                    style={{
-                                                        boxShadow:
-                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
-                                                    }}
-                                                    className="group-hover:hidden absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none flex justify-center items-center pl-px pt-px"
-                                                >
-                                                    <SmallSocialIcons.LikeIcon />
+                                                <div className="font-montserrat font-[900] uppercase text-[14px] text-center group-hover:text-[#1890FF] text-[#6B6B7C] select-none">
+                                                    <div className="group-hover:hidden">
+                                                        Come to
+                                                    </div>
+                                                    <div className="group-hover:hidden">
+                                                        dark side
+                                                    </div>
+                                                    <div className="hidden group-hover:block">
+                                                        We have
+                                                    </div>
+                                                    <div className="hidden group-hover:block">
+                                                        cookies
+                                                    </div>
                                                 </div>
-                                                <div
-                                                    style={{
-                                                        boxShadow:
-                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
-                                                    }}
-                                                    className="hidden absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none group-hover:flex justify-center items-center pl-px pt-px"
-                                                >
-                                                    <SmallSocialIcons.LikeIconAlt />
-                                                </div>
-                                                <div className="font-montserrat font-bold leading-[28px] text-[18px] lg:text-[20px] text-center pb-4 pt-1 group-hover:text-[#1890FF] text-[#2A2A42] select-none">
-                                                    <span className="inline group-hover:hidden">
-                                                        Come to dark side
-                                                    </span>
-                                                    <span className="hidden group-hover:inline">
-                                                        We have cookies
-                                                    </span>
-                                                </div>
-                                                <div className="flex justify-center gap-6">
+                                                <div className="flex justify-center gap-6 mt-2">
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
@@ -1578,97 +1536,27 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </div>
                                             </motion.div>
                                         </div>
+
+                                        <div className="font-montserrat text-xl pt-[14px] max-w-screen-lg">
+                                            <p className="lg:mb-2">
+                                                <strong>refine</strong> core is
+                                                an open source framework and it
+                                                will always{" "}
+                                                <strong>stay free</strong>.
+                                            </p>
+                                            <p className="lg:mb-0">
+                                                It has a very strong community
+                                                of maintainers, contributers and
+                                                and users providing{" "}
+                                                <strong>24/7</strong> support on
+                                                our GitHub, Twitter and Discord
+                                                channels.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
-                    </motion.div>
-                    <motion.div
-                        style={lg ? { opacity: slideOpacity } : {}}
-                        className="flex-shrink-0 hidden lg:block"
-                    >
-                        <div
-                            className="relative flex w-full max-w-5xl mx-auto bg-white"
-                            style={{
-                                boxShadow:
-                                    "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
-                            }}
-                        >
-                            <motion.div
-                                style={{
-                                    zIndex: currentSlide === 1 ? 2 : 0,
-                                    color:
-                                        currentSlide === 1
-                                            ? "#1890FF"
-                                            : "#A3D3FF",
-                                    borderColor:
-                                        currentSlide === 1
-                                            ? "#1890FF"
-                                            : "#A3D3FF",
-                                }}
-                                className="flex-1 py-3 ml-px text-lg font-medium text-center uppercase transition-colors duration-200 ease-in-out border border-solid font-montserrat"
-                            >
-                                headless ui
-                            </motion.div>
-                            <motion.div
-                                style={{
-                                    zIndex: currentSlide === 2 ? 2 : 0,
-                                    color:
-                                        currentSlide === 2
-                                            ? "#1890FF"
-                                            : "#A3D3FF",
-                                    borderColor:
-                                        currentSlide === 2
-                                            ? "#1890FF"
-                                            : "#A3D3FF",
-                                }}
-                                className="flex-1 py-3 -ml-px text-lg font-medium text-center uppercase transition-colors duration-200 ease-in-out border border-solid font-montserrat"
-                            >
-                                backend agnostic
-                            </motion.div>
-                            <motion.div
-                                style={{
-                                    zIndex: currentSlide === 3 ? 2 : 0,
-                                    color:
-                                        currentSlide === 3
-                                            ? "#1890FF"
-                                            : "#A3D3FF",
-                                    borderColor:
-                                        currentSlide === 3
-                                            ? "#1890FF"
-                                            : "#A3D3FF",
-                                }}
-                                className="flex-1 py-3 -ml-px text-lg font-medium text-center uppercase transition-colors duration-200 ease-in-out border border-solid font-montserrat"
-                            >
-                                custom workflow
-                            </motion.div>
-                            <motion.div
-                                style={{
-                                    zIndex: currentSlide === 4 ? 2 : 0,
-                                    color:
-                                        currentSlide === 4
-                                            ? "#1890FF"
-                                            : "#A3D3FF",
-                                    borderColor:
-                                        currentSlide === 4
-                                            ? "#1890FF"
-                                            : "#A3D3FF",
-                                }}
-                                className="flex-1 py-3 -ml-px text-lg font-medium text-center uppercase transition-colors duration-200 ease-in-out border border-solid font-montserrat"
-                            >
-                                open source
-                            </motion.div>
-                            <div
-                                className="absolute top-0 h-2.5 -mt-2 transition-all duration-200"
-                                style={{
-                                    left: `calc(${
-                                        (currentSlide - 1) * 25
-                                    }% + calc(12.5% - 3px))`,
-                                }}
-                            >
-                                <ChevronDown />
-                            </div>
-                        </div>
                     </motion.div>
                 </motion.div>
                 {/* Scroll snap alignment */}

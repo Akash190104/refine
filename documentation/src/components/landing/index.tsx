@@ -8,9 +8,9 @@ import { SectionUseCase } from "./section-use-case";
 export const Landing: React.FC = () => {
     return (
         <main id="landing_main">
-            <SectionHero />
+            {/* <SectionHero />
             <SectionFreeStart />
-            <SectionBullets />
+            <SectionBullets /> */}
             <SectionNoConstraints />
             <SectionUseCase />
         </main>

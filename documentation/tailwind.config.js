@@ -7,6 +7,10 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
         extend: {
+            colors: {
+                discord: "#5865F2",
+                twitter: "#00AAEC",
+            },
             fontFamily: {
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
             },

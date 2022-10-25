@@ -11,6 +11,8 @@ import {
     FilterDropdown,
     Select,
     useSelect,
+    TimePicker,
+    DatePicker,
 } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
@@ -36,6 +38,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List>
+            <DatePicker.RangePicker picker="time" />
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />

@@ -15,12 +15,13 @@ import { CountingNumber } from "../counting-number";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 import { ExternalLinkIcon } from "../icons/external-link-icon";
 import { useGithubContext } from "../../../context/GithubContext";
-import SpotLight from "./spot-light";
+import SpotLight from "../spot-light";
 
 export const SectionNoConstraints: React.FC = () => {
     const { starCount } = useGithubContext();
 
     const ref = React.useRef<HTMLDivElement>(null);
+    const sliderViewportRef = React.useRef<HTMLDivElement>(null);
 
     const { sm, md, lg, xl } = useTWBreakpoints();
 
@@ -138,19 +139,49 @@ export const SectionNoConstraints: React.FC = () => {
         [1, 1, 0],
     );
 
+    const spotlightCyanX = useTransform(
+        scrollYProgress,
+        [0, 1 / 5, 2 / 5, 3 / 5, 4 / 5, 1],
+        [480, 480, 430, 190, 700, 700],
+    );
+
+    const spotlightCyanY = useTransform(
+        scrollYProgress,
+        [0, 1 / 5, 2 / 5, 3 / 5, 4 / 5, 1],
+        [260, 260, 125, 10, -60, -60],
+    );
+
     const spotlightBlueX = useTransform(
         scrollYProgress,
         [0, 1 / 5, 2 / 5, 3 / 5, 4 / 5, 1],
-        [550, 550, 550, 550, 550, 550],
+        [570, 570, 565, -60, 395, 395],
     );
 
     const spotlightBlueY = useTransform(
         scrollYProgress,
         [0, 1 / 5, 2 / 5, 3 / 5, 4 / 5, 1],
-        [-500, -10, -100, -50, -50, -50],
+        [-20, -20, -85, 125, -45, -45],
     );
 
-    console.log({ spotlightBlueY, scrollYProgress });
+    const spotlightPurpleX = useTransform(
+        scrollYProgress,
+        [0, 1 / 5, 2 / 5, 3 / 5, 4 / 5, 1],
+        [320, 320, 260, 170, 480, 480],
+    );
+
+    const spotlightPurpleY = useTransform(
+        scrollYProgress,
+        [0, 1 / 5, 2 / 5, 3 / 5, 4 / 5, 1],
+        [-120, -120, -105, 125, 50, 50],
+    );
+
+    const spotlightTranslate = useTransform(
+        scrollYProgress,
+        [0, 1 / 5, 2 / 5, 3 / 5, 4 / 5, 1],
+        ["0%", "0%", "0%", "0%", "0%", "-500%"],
+    );
+
+    console.log({ scrollYProgress: scrollYProgress.get() });
 
     const backendItems = [
         {
@@ -241,6 +272,7 @@ export const SectionNoConstraints: React.FC = () => {
             >
                 <RefineBgIcon />
             </motion.div> */}
+
             <motion.div
                 ref={ref}
                 className="h-auto lg:h-[500vh] bg-white -mt-px"
@@ -248,28 +280,35 @@ export const SectionNoConstraints: React.FC = () => {
                 <div className="hidden w-screen h-0 max-w-full lg:block snap-start" />
                 <div className="hidden w-full h-px -mb-px lg:snap-start lg:block" />
                 {/* Scroll animated section */}
-                <motion.div className="lg:overflow-hidden  h-auto lg:h-screen w-screen max-w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[50px]">
+                <motion.div
+                    ref={sliderViewportRef}
+                    className="lg:overflow-hidden mx-auto max-w-7xl h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[50px]"
+                >
                     <SpotLight
-                        variant="blue"
                         style={{
-                            x: 550,
-                            y: -50,
+                            x: spotlightCyanX,
+                            y: spotlightCyanY,
+                            translateX: spotlightTranslate,
                         }}
+                        variant="cyan"
                     />
-                    {/* <SpotLight
-                                variant="cyan"
-                                animate={{
-                                    x: 430,
-                                    y: 160,
-                                }}
-                            />
-                            <SpotLight
-                                variant="purple"
-                                animate={{
-                                    x: 250,
-                                    y: -30,
-                                }}
-                            /> */}
+                    <SpotLight
+                        style={{
+                            x: spotlightBlueX,
+                            y: spotlightBlueY,
+                            translateX: spotlightTranslate,
+                        }}
+                        variant="blue"
+                    />
+                    <SpotLight
+                        style={{
+                            x: spotlightPurpleX,
+                            y: spotlightPurpleY,
+                            translateX: spotlightTranslate,
+                        }}
+                        variant="purple"
+                    />
+
                     <div className="flex-shrink-0 w-full">
                         <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[64px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
                             no constraints
@@ -898,16 +937,16 @@ export const SectionNoConstraints: React.FC = () => {
                                                     once: true,
                                                     margin: "25px",
                                                 }}
-                                                className="transition-colors group border border-solid border-[#ededef] rounded-[10px] bg-[#ffffffb3] hover:bg-white p-2.5 lg:p-0  min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative select-none shadow-startTiles"
+                                                className="group border border-solid border-[#ededef] rounded-[10px] bg-[#ffffffb3] hover:bg-white p-2.5 lg:p-0  min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative select-none shadow-startTiles"
                                             >
                                                 <div className="transition-colors ease-in-out bg-[#ededef] group-hover:bg-white w-[42px] h-[36px] absolute right-4 top-0 flex items-center justify-center rounded-b group-hover:text-[#2A2A42] text-[#6B6B7C] shadow-startTiles">
                                                     <SmallSocialIcons.GithubIcon />
                                                 </div>
-                                                <div className="font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C]">
+                                                <div className="transition-[colors,transform] font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                                                     <CountingNumber to={2800} />
                                                     +
                                                 </div>
-                                                <div className="transition-colors font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C]">
+                                                <div className="transition-[colors,transform] font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                                                     Commits
                                                 </div>
                                             </motion.div>
@@ -950,7 +989,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <div className="transition-colors ease-in-out bg-[#ededef] group-hover:bg-white w-[42px] h-[36px] absolute right-4 top-0 flex items-center justify-center rounded-b group-hover:text-[#2A2A42] text-[#6B6B7C] shadow-startTiles">
                                                     <SmallSocialIcons.GithubIcon />
                                                 </div>
-                                                <div className="font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C]">
+                                                <div className="transition-[colors,transform] ease-in-out font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                                                     <CountingNumber
                                                         to={
                                                             Math.floor(
@@ -963,7 +1002,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     />
                                                     +
                                                 </div>
-                                                <div className="transition-colors font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C]">
+                                                <div className="transition-[colors,transform] ease-in-out font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                                                     GitHub Stars
                                                 </div>
                                             </motion.div>
@@ -1003,13 +1042,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }}
                                                 className="transition-colors group border border-solid border-[#ededef] rounded-[10px] bg-[#ffffffb3] hover:bg-white p-2.5 lg:p-0  min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative select-none shadow-startTiles"
                                             >
-                                                <div className="transition-colors ease-in-out bg-[#ededef] group-hover:bg-white w-[42px] h-[36px] absolute right-4 top-0 flex items-center justify-center rounded-b group-hover:text-discord text-[#6B6B7C] shadow-startTiles">
+                                                <div className="transition-[colors,transform] ease-in-out bg-[#ededef] group-hover:bg-white w-[42px] h-[36px] absolute right-4 top-0 flex items-center justify-center rounded-b group-hover:text-discord text-[#6B6B7C] group-hover:scale-110 shadow-startTiles">
                                                     <SmallSocialIcons.DiscordIcon />
                                                 </div>
                                                 <div className="font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C]">
                                                     <CountingNumber to={500} />+
                                                 </div>
-                                                <div className="transition-colors font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C]">
+                                                <div className="ttransition-[colors,transform] ease-in-out font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                                                     Discord Members
                                                 </div>
                                             </motion.div>
@@ -1052,11 +1091,11 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <div className="transition-colors ease-in-out bg-[#ededef] group-hover:bg-white w-[42px] h-[36px] absolute right-4 top-0 flex items-center justify-center rounded-b group-hover:text-twitter text-[#6B6B7C] shadow-startTiles">
                                                     <SmallSocialIcons.TwitterIcon />
                                                 </div>
-                                                <div className="font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C]">
+                                                <div className="transition-[colors,transform] ease-in-out font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                                                     <CountingNumber to={1000} />
                                                     +
                                                 </div>
-                                                <div className="transition-colors font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C]">
+                                                <div className="transition-[colors,transform] ease-in-out font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                                                     Twitter Followers
                                                 </div>
                                             </motion.div>
@@ -1097,9 +1136,9 @@ export const SectionNoConstraints: React.FC = () => {
                                                     once: true,
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative group group-hover:text-[#1890FF] text-[#2A2A42]"
+                                                className="group rounded-[10px] p-2.5 lg:p-0 shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative group group-hover:text-[#1890FF] text-[#2A2A42]"
                                             >
-                                                <div className="font-montserrat font-[900] uppercase text-base text-center group-hover:text-[#1890FF] text-[#6B6B7C] select-none">
+                                                <div className="transition-[colors,transform] ease-in-out font-montserrat font-[900] uppercase text-base text-center group-hover:text-[#1890FF] text-[#6B6B7C] select-none group-hover:scale-125">
                                                     <div className="group-hover:hidden">
                                                         Come to
                                                     </div>

@@ -22,17 +22,14 @@ export const SectionUseCase: React.FC = () => {
             ref={ref}
             className="h-auto lg:h-screen lg:max-h-[650px] bg-white -mt-px"
         >
-            {/* Scroll snap alignment */}
-            {/* <div className="hidden lg:block snap-start h-screen lg:max-h-[550px]" /> */}
-            {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-screen lg:max-h-[650px] lg:snap-start w-screen max-w-full overflow-x-hidden top-0 left-0 relative lg:sticky pt-16 pb-12 flex flex-col items-center justify-end gap-24 lg:gap-0">
+            <motion.div className="h-auto lg:h-screen lg:max-h-[650px] w-screen max-w-full overflow-x-hidden top-0 left-0 relative lg:sticky pt-16 pb-12 flex flex-col items-center justify-end gap-24 lg:gap-0">
                 <div className="w-full">
                     <div className="bg-[#F6F6F9] py-4 px-2 md:px-4 lg:px-6">
-                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-4 lg:gap-0">
+                        <div className="flex flex-col items-center justify-between max-w-5xl gap-4 mx-auto lg:flex-row lg:gap-0">
                             <div className="font-montserrat text-[18px] leading-[24px] font-extrabold text-[#2A2A42]">
                                 NOW YOU’RE READY
                             </div>
-                            <div className="flex gap-3 lg:gap-1 flex-col lg:flex-row">
+                            <div className="flex flex-col gap-3 lg:gap-1 lg:flex-row">
                                 <Link
                                     className="appearance-none flex justify-center items-center rounded-lg h-[38px] w-[210px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-base border-0 text-white"
                                     style={{
@@ -47,7 +44,7 @@ export const SectionUseCase: React.FC = () => {
                         </div>
                     </div>
                     <div className="bg-[#E1E1E4] py-4 px-2 md:px-4 lg:px-6">
-                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-4 lg:gap-0">
+                        <div className="flex flex-col items-center justify-between max-w-5xl gap-4 mx-auto lg:flex-row lg:gap-0">
                             <div className="font-montserrat text-[18px] leading-[24px] font-medium text-[#2A2A42]">
                                 <div>NEED ANY FURTHER INFORMATION?</div>
                                 <div>
@@ -105,7 +102,7 @@ export const SectionUseCase: React.FC = () => {
                                 .
                             </p>
                         </div>
-                        <div className="flex lg:block justify-center">
+                        <div className="flex justify-center lg:block">
                             <a
                                 href="https://refinedev.typeform.com/to/Ypm6r6oj"
                                 target="_blank"
@@ -121,9 +118,9 @@ export const SectionUseCase: React.FC = () => {
                             </a>
                         </div>
                     </div>
-                    <div className="flex-1 w-full lg:w-auto flex">
+                    <div className="flex flex-1 w-full lg:w-auto">
                         <motion.div
-                            className="flex-1 w-full lg:w-auto flex flex-col justify-end items-center lg:items-end relative"
+                            className="relative flex flex-col items-center justify-end flex-1 w-full lg:w-auto lg:items-end"
                             whileInView={
                                 !lg && md ? { scale: [0, 1] } : undefined
                             }
